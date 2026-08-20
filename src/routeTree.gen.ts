@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MeetingSummarizerRouteImport } from './routes/meeting-summarizer'
 import { Route as SmartEmailRouteImport } from './routes/smart-email'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeetingSummarizerRoute = MeetingSummarizerRouteImport.update({
+  id: '/meeting-summarizer',
+  path: '/meeting-summarizer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SmartEmailRoute = SmartEmailRouteImport.update({
@@ -31,30 +37,34 @@ const ApiChatRoute = ApiChatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/smart-email': typeof SmartEmailRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/smart-email': typeof SmartEmailRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/smart-email': typeof SmartEmailRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/smart-email' | '/api/chat'
+  fullPaths: '/' | '/meeting-summarizer' | '/smart-email' | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/smart-email' | '/api/chat'
-  id: '__root__' | '/' | '/smart-email' | '/api/chat'
+  to: '/' | '/meeting-summarizer' | '/smart-email' | '/api/chat'
+  id: '__root__' | '/' | '/meeting-summarizer' | '/smart-email' | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MeetingSummarizerRoute: typeof MeetingSummarizerRoute
   SmartEmailRoute: typeof SmartEmailRoute
   ApiChatRoute: typeof ApiChatRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meeting-summarizer': {
+      id: '/meeting-summarizer'
+      path: '/meeting-summarizer'
+      fullPath: '/meeting-summarizer'
+      preLoaderRoute: typeof MeetingSummarizerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/smart-email': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MeetingSummarizerRoute: MeetingSummarizerRoute,
   SmartEmailRoute: SmartEmailRoute,
   ApiChatRoute: ApiChatRoute,
 }
