@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MeetingSummarizerRouteImport } from './routes/meeting-summarizer'
 import { Route as SmartEmailRouteImport } from './routes/smart-email'
+import { Route as TaskPlannerRouteImport } from './routes/task-planner'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const SmartEmailRoute = SmartEmailRouteImport.update({
   path: '/smart-email',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TaskPlannerRoute = TaskPlannerRouteImport.update({
+  id: '/task-planner',
+  path: '/task-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/smart-email': typeof SmartEmailRoute
+  '/task-planner': typeof TaskPlannerRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/smart-email': typeof SmartEmailRoute
+  '/task-planner': typeof TaskPlannerRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,30 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/smart-email': typeof SmartEmailRoute
+  '/task-planner': typeof TaskPlannerRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/meeting-summarizer' | '/smart-email' | '/api/chat'
+  fullPaths:
+    '/' | '/meeting-summarizer' | '/smart-email' | '/task-planner' | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/meeting-summarizer' | '/smart-email' | '/api/chat'
-  id: '__root__' | '/' | '/meeting-summarizer' | '/smart-email' | '/api/chat'
+  to:
+    '/' | '/meeting-summarizer' | '/smart-email' | '/task-planner' | '/api/chat'
+  id:
+    | '__root__'
+    | '/'
+    | '/meeting-summarizer'
+    | '/smart-email'
+    | '/task-planner'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MeetingSummarizerRoute: typeof MeetingSummarizerRoute
   SmartEmailRoute: typeof SmartEmailRoute
+  TaskPlannerRoute: typeof TaskPlannerRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
@@ -92,6 +110,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SmartEmailRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/task-planner': {
+      id: '/task-planner'
+      path: '/task-planner'
+      fullPath: '/task-planner'
+      preLoaderRoute: typeof TaskPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/chat': {
       id: '/api/chat'
       path: '/api/chat'
@@ -106,6 +131,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MeetingSummarizerRoute: MeetingSummarizerRoute,
   SmartEmailRoute: SmartEmailRoute,
+  TaskPlannerRoute: TaskPlannerRoute,
   ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
