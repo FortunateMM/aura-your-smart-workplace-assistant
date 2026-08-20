@@ -23,7 +23,7 @@ export const Route = createFileRoute("/api/chat")({
           const result = streamText({
             model: getAuraModel(),
             system: AURA_CHAT_SYSTEM,
-            messages: convertToModelMessages(messages),
+            messages: await convertToModelMessages(messages),
             temperature: 0.7,
           });
 
