@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuraRouteImport } from './routes/aura'
 import { Route as MeetingSummarizerRouteImport } from './routes/meeting-summarizer'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SmartEmailRouteImport } from './routes/smart-email'
 import { Route as TaskPlannerRouteImport } from './routes/task-planner'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
@@ -37,6 +38,11 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SmartEmailRoute = SmartEmailRouteImport.update({
   id: '/smart-email',
   path: '/smart-email',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/aura': typeof AuraRoute
   '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
   '/smart-email': typeof SmartEmailRoute
   '/task-planner': typeof TaskPlannerRoute
   '/api/chat': typeof ApiChatRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/aura': typeof AuraRoute
   '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
   '/smart-email': typeof SmartEmailRoute
   '/task-planner': typeof TaskPlannerRoute
   '/api/chat': typeof ApiChatRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/aura': typeof AuraRoute
   '/meeting-summarizer': typeof MeetingSummarizerRoute
   '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
   '/smart-email': typeof SmartEmailRoute
   '/task-planner': typeof TaskPlannerRoute
   '/api/chat': typeof ApiChatRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/aura'
     | '/meeting-summarizer'
     | '/research'
+    | '/settings'
     | '/smart-email'
     | '/task-planner'
     | '/api/chat'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/aura'
     | '/meeting-summarizer'
     | '/research'
+    | '/settings'
     | '/smart-email'
     | '/task-planner'
     | '/api/chat'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/aura'
     | '/meeting-summarizer'
     | '/research'
+    | '/settings'
     | '/smart-email'
     | '/task-planner'
     | '/api/chat'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AuraRoute: typeof AuraRoute
   MeetingSummarizerRoute: typeof MeetingSummarizerRoute
   ResearchRoute: typeof ResearchRoute
+  SettingsRoute: typeof SettingsRoute
   SmartEmailRoute: typeof SmartEmailRoute
   TaskPlannerRoute: typeof TaskPlannerRoute
   ApiChatRoute: typeof ApiChatRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/smart-email': {
       id: '/smart-email'
       path: '/smart-email'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuraRoute: AuraRoute,
   MeetingSummarizerRoute: MeetingSummarizerRoute,
   ResearchRoute: ResearchRoute,
+  SettingsRoute: SettingsRoute,
   SmartEmailRoute: SmartEmailRoute,
   TaskPlannerRoute: TaskPlannerRoute,
   ApiChatRoute: ApiChatRoute,
