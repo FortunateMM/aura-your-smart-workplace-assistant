@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuraRouteImport } from './routes/aura'
+import { Route as MeetingSummarizerRouteImport } from './routes/meeting-summarizer'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SmartEmailRouteImport } from './routes/smart-email'
+import { Route as TaskPlannerRouteImport } from './routes/task-planner'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuraRoute = AuraRouteImport.update({
+  id: '/aura',
+  path: '/aura',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeetingSummarizerRoute = MeetingSummarizerRouteImport.update({
+  id: '/meeting-summarizer',
+  path: '/meeting-summarizer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmartEmailRoute = SmartEmailRouteImport.update({
+  id: '/smart-email',
+  path: '/smart-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TaskPlannerRoute = TaskPlannerRouteImport.update({
+  id: '/task-planner',
+  path: '/task-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aura': typeof AuraRoute
+  '/meeting-summarizer': typeof MeetingSummarizerRoute
+  '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
+  '/smart-email': typeof SmartEmailRoute
+  '/task-planner': typeof TaskPlannerRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aura': typeof AuraRoute
+  '/meeting-summarizer': typeof MeetingSummarizerRoute
+  '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
+  '/smart-email': typeof SmartEmailRoute
+  '/task-planner': typeof TaskPlannerRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aura': typeof AuraRoute
+  '/meeting-summarizer': typeof MeetingSummarizerRoute
+  '/research': typeof ResearchRoute
+  '/settings': typeof SettingsRoute
+  '/smart-email': typeof SmartEmailRoute
+  '/task-planner': typeof TaskPlannerRoute
+  '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/aura'
+    | '/meeting-summarizer'
+    | '/research'
+    | '/settings'
+    | '/smart-email'
+    | '/task-planner'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/aura'
+    | '/meeting-summarizer'
+    | '/research'
+    | '/settings'
+    | '/smart-email'
+    | '/task-planner'
+    | '/api/chat'
+  id:
+    | '__root__'
+    | '/'
+    | '/aura'
+    | '/meeting-summarizer'
+    | '/research'
+    | '/settings'
+    | '/smart-email'
+    | '/task-planner'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuraRoute: typeof AuraRoute
+  MeetingSummarizerRoute: typeof MeetingSummarizerRoute
+  ResearchRoute: typeof ResearchRoute
+  SettingsRoute: typeof SettingsRoute
+  SmartEmailRoute: typeof SmartEmailRoute
+  TaskPlannerRoute: typeof TaskPlannerRoute
+  ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aura': {
+      id: '/aura'
+      path: '/aura'
+      fullPath: '/aura'
+      preLoaderRoute: typeof AuraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meeting-summarizer': {
+      id: '/meeting-summarizer'
+      path: '/meeting-summarizer'
+      fullPath: '/meeting-summarizer'
+      preLoaderRoute: typeof MeetingSummarizerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/smart-email': {
+      id: '/smart-email'
+      path: '/smart-email'
+      fullPath: '/smart-email'
+      preLoaderRoute: typeof SmartEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/task-planner': {
+      id: '/task-planner'
+      path: '/task-planner'
+      fullPath: '/task-planner'
+      preLoaderRoute: typeof TaskPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuraRoute: AuraRoute,
+  MeetingSummarizerRoute: MeetingSummarizerRoute,
+  ResearchRoute: ResearchRoute,
+  SettingsRoute: SettingsRoute,
+  SmartEmailRoute: SmartEmailRoute,
+  TaskPlannerRoute: TaskPlannerRoute,
+  ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
